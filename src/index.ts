@@ -28,7 +28,7 @@ export default class NSXReader {
     env.addFilter('dayjs', (time, format='YYYY-MM-DD HH:mm:ss'): string  => {
       return dayjs(time * 1000).format(format)
     })
-    const template = nunjucks.compile(fs.readFileSync(path.join(__dirname, '../template/note.html'), 'utf-8'), env)
+    const template = nunjucks.compile(this.readTemplate('note.html'), env)
 
     return template
   }
@@ -80,6 +80,10 @@ export default class NSXReader {
     return JSON.parse(content)
   }
 
+  public readTemplate(file: string): string {
+    return fs.readFileSync(path.join(__dirname, `../template/${file}`), 'utf-8')
+  }
+
   public generate(noteInfo: Reader.NoteInfo): void {
     const { outputDir, template } = this
 
@@ -89,9 +93,21 @@ export default class NSXReader {
       notebook.notes.forEach((note): void => {
         const { title, attachment } = note
         const dir = notebook.stack ? path.join(outputDir, notebook.stack, notebook.title, `${title}`) : path.join(outputDir, notebook.title, `${title}`)
+        const extra: NSX.Attachment[] = []
+
+        for (let key in attachment) {
+          const { width, height } = attachment[key]
+          if (!width && !height) {
+            extra.push(attachment[key])
+          }
+        }
 
         fse.ensureDirSync(dir)
-        fs.writeFileSync(path.join(dir, 'index.html'), template.render(note))
+        fs.writeFileSync(path.join(dir, 'index.html'), template.render(Object.assign({
+          extra,
+          style: this.readTemplate('style.css'),
+          script: this.readTemplate('script.js')
+        }, note)))
 
         for (let i in attachment) {
           const item = attachment[i]

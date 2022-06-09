@@ -1,0 +1,99 @@
+ins {
+  background-color: #6eff6e;
+  text-decoration: initial;
+}
+
+del {
+  background-color: #ff6e6e;
+}
+
+img {
+  max-width: 100%;
+  margin: 0 6px;
+}
+
+a {
+  color: #0086E5;
+}
+
+hr {
+  cursor: default;
+  /* synostyle */
+  border: 2px solid #b4bec8;
+  border-style: none none solid;
+  color: #fff;
+  background-color: #fff;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+table td,
+table th,
+table caption {
+  border: 1px solid lightgray;
+}
+
+/* --------------------------------- */
+
+.syno-notestation-editor-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 0px;
+  vertical-align: middle;
+  margin-left: 6px;
+  margin-top: -3px;
+  outline: 0px none !important;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-align: inherit;
+  text-decoration: inherit
+}
+
+/* --------------------------------- */
+
+body {
+  color: rgba(0, 0, 0, 0.65);
+  font: 14px/2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+
+.nsx-container {
+  width: 96%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.nsx-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+  text-align: center;
+}
+
+.nsx-meta {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+}
+.nsx-meta span {
+  margin-right: 10px;
+}
+
+.nsx-content {
+  margin-top: 10px;
+  word-break: break-all;
+}
+
+.nsx-attachment {
+  border-top: 1px solid #e8e8e8;
+  margin-top: 20px;
+  padding: 10px 0;
+}
+
+.nsx-attachment dd {
+  margin-left: 0;
+}
