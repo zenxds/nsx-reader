@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 import Reader from  '../src'
 
@@ -14,6 +15,8 @@ describe('reader', () => {
     const noteInfo = reader.getNoteInfo()
     reader.generate(noteInfo)
     reader.clean()
+
+    expect(fs.existsSync(reader.outputDir)).toBeTruthy()
   })
 
 })

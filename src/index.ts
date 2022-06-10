@@ -8,9 +8,9 @@ import dayjs from 'dayjs'
 
 export default class NSXReader {
   public options: Reader.Options
-  private unzipDir: string
-  private outputDir: string
-  private template: nunjucks.Template
+  public unzipDir: string
+  public outputDir: string
+  public template: nunjucks.Template
 
   public constructor(options: Reader.Options) {
     this.options = options
@@ -43,7 +43,7 @@ export default class NSXReader {
   }
 
   public getNoteInfo(): Reader.NoteInfo {
-    const config = this.readFile<NSX.Config>(this.resolveSource('config.json'))
+    const config = this.readSource<NSX.Config>('config.json')
     const ret: Reader.NoteInfo = {
       notebook: {
         recycle: {
@@ -55,7 +55,7 @@ export default class NSXReader {
     }
 
     config.notebook.forEach((file): void => {
-      const notebook = this.readFile<NSX.Notebook>(this.resolveSource(file))
+      const notebook = this.readSource<NSX.Notebook>(file)
       ret.notebook[file] = {
         title: notebook.title,
         stack: notebook.stack,
@@ -64,7 +64,7 @@ export default class NSXReader {
     })
 
     config.note.forEach((file): void => {
-      const note = this.readFile<NSX.Note>(this.resolveSource(file))
+      const note = this.readSource<NSX.Note>(file)
       if (ret.notebook[note.parent_id]) {
         ret.notebook[note.parent_id].notes.push(note)
       } else {
@@ -75,8 +75,8 @@ export default class NSXReader {
     return ret
   }
 
-  public readFile<T>(file: string): T {
-    const content = fs.readFileSync(file, 'utf8')
+  public readSource<T>(file: string): T {
+    const content = fs.readFileSync(this.resolveSource(file), 'utf8')
     return JSON.parse(content)
   }
 
@@ -122,7 +122,7 @@ export default class NSXReader {
     fse.removeSync(this.unzipDir)
   }
 
-  private resolveSource(p: string): string {
+  public resolveSource(p: string): string {
     return path.join(this.unzipDir, p)
   }
 }
