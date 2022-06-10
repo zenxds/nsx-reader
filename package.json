@@ -1,6 +1,6 @@
 {
   "name": "nsx-reader",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "nsx-reader",
   "keywords": ["nsx", "synology", "note"],
   "main": "lib/index.js",
