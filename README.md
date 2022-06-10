@@ -15,7 +15,7 @@ nsx-reader test.nsx -o outputDir
 ## code use
 
 ```
-import Reader from  'nsx-reader'
+import Reader from 'nsx-reader'
 
 const reader = new Reader({
   src: path.join(__dirname, 'test.nsx'),
@@ -31,4 +31,3 @@ reader.clean()
 ## TODO
 
 * chart support
-* export todo list

@@ -5,13 +5,24 @@ declare namespace Reader {
     outputDir: string
   }
 
-  interface NoteInfoItem {
+  interface Notebook {
     title: string
     stack: string
-    notes: NSX.Note[]
+    notes: Note[]
+  }
+
+  interface Note extends NSX.Note {
+    id: string
+  }
+
+  interface Todo extends NSX.Todo {
+    id: string
+    tasks: NSX.Todo[]
   }
 
   interface NoteInfo {
-    notebook: Record<string, NoteInfoItem>
+    todo: Todo[]
+    recycle: Notebook
+    notebook: Record<string, Notebook>
   }
 }

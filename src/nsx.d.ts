@@ -40,4 +40,17 @@ declare namespace NSX {
     content: string
     tag: string[]
   }
+
+  interface Todo {
+    category: string
+    parent_id: string
+    note_id: string
+    title: string
+    star: boolean
+    done: boolean
+    comment: string
+    priority: number
+    due_date: number
+    reminder_offset: number
+  }
 }

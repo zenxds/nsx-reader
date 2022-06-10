@@ -36,6 +36,10 @@ table caption {
   border: 1px solid lightgray;
 }
 
+input[type="checkbox"] {
+  margin-right: 4px;
+}
+
 /* --------------------------------- */
 
 .syno-notestation-editor-checkbox {

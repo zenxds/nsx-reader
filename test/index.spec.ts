@@ -13,8 +13,12 @@ describe('reader', () => {
 
     await reader.unzip()
     const noteInfo = reader.getNoteInfo()
+    // fs.writeFileSync(path.join(__dirname, 'src/noteInfo.json'), JSON.stringify(noteInfo, null, 2))
     reader.generate(noteInfo)
+
+    expect(fs.existsSync(reader.unzipDir)).toBeTruthy()
     reader.clean()
+    expect(fs.existsSync(reader.unzipDir)).toBeFalsy()
 
     expect(fs.existsSync(reader.outputDir)).toBeTruthy()
   })
